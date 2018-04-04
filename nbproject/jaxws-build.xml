@@ -42,5 +42,37 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/agendasoap"/>
         <delete dir="${build.generated.dir}/jax-wsCache/Agenda"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-Agenda"/>
+    <target name="wsimport-client-Agenda_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Agenda_1"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Agenda_1" destdir="${build.generated.dir}/jax-wsCache/Agenda_1" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Agenda_1/wsdl/localhost_8080/SoapAgenda/Agenda.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/SoapAgenda/Agenda?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Agenda_1/wsdl/localhost_8080/SoapAgenda/Agenda.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Agenda_1"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Agenda_1">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-Agenda_1" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/agendasoap"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/Agenda_1"/>
+    </target>
+    <target name="wsimport-client-Agenda_2" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Agenda_2"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Agenda_2" destdir="${build.generated.dir}/jax-wsCache/Agenda_2" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Agenda_2/wsdl/localhost_8080/SoapAgenda/Agenda.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/SoapAgenda/Agenda?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Agenda_2/wsdl/localhost_8080/SoapAgenda/Agenda.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Agenda_2"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Agenda_2">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-Agenda_2" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/agendasoap"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/Agenda_2"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-Agenda, wsimport-client-Agenda_1, wsimport-client-Agenda_2"/>
 </project>

@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para validarAgenda complex type.
+ * <p>Clase Java para devolverPersona complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="validarAgenda"&gt;
+ * &lt;complexType name="devolverPersona"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "validarAgenda", propOrder = {
+@XmlType(name = "devolverPersona", propOrder = {
     "arg0"
 })
-public class ValidarAgenda {
+public class DevolverPersona {
 
     protected String arg0;
 

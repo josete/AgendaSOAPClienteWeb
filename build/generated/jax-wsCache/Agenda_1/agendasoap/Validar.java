@@ -26,18 +26,6 @@ public interface Validar {
 
     /**
      * 
-     * @return
-     *     returns agendasoap.Agenda
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "devolverAgenda", targetNamespace = "http://agendaSoap/", className = "agendasoap.DevolverAgenda")
-    @ResponseWrapper(localName = "devolverAgendaResponse", targetNamespace = "http://agendaSoap/", className = "agendasoap.DevolverAgendaResponse")
-    @Action(input = "http://agendaSoap/Validar/devolverAgendaRequest", output = "http://agendaSoap/Validar/devolverAgendaResponse")
-    public Agenda devolverAgenda();
-
-    /**
-     * 
      * @param arg0
      */
     @WebMethod
@@ -47,6 +35,18 @@ public interface Validar {
     public void insertarPersona(
         @WebParam(name = "arg0", targetNamespace = "")
         Persona arg0);
+
+    /**
+     * 
+     * @return
+     *     returns agendasoap.Agenda
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "devolverAgenda", targetNamespace = "http://agendaSoap/", className = "agendasoap.DevolverAgenda")
+    @ResponseWrapper(localName = "devolverAgendaResponse", targetNamespace = "http://agendaSoap/", className = "agendasoap.DevolverAgendaResponse")
+    @Action(input = "http://agendaSoap/Validar/devolverAgendaRequest", output = "http://agendaSoap/Validar/devolverAgendaResponse")
+    public Agenda devolverAgenda();
 
     /**
      * 
@@ -61,7 +61,7 @@ public interface Validar {
     @Action(input = "http://agendaSoap/Validar/validarAgendaRequest", output = "http://agendaSoap/Validar/validarAgendaResponse")
     public boolean validarAgenda(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        Agenda arg0);
 
     /**
      * 

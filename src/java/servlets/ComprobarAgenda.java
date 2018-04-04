@@ -5,18 +5,24 @@
  */
 package servlets;
 
+import agendasoap.Agenda_Service;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
- * @author Familia
+ * @author Portatil
  */
-public class MainServlet extends HttpServlet {
+@MultipartConfig
+public class ComprobarAgenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,50 +36,27 @@ public class MainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        agendasoap.Agenda_Service service = new Agenda_Service();
+        Part archivo = request.getPart("archivo");
+        File agenda = Paths.get(archivo.getSubmittedFileName()).toFile();
+        boolean b = service.getValidarPort().validarAgenda(agenda.toString());
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Menu</title>");            
+            out.println("<title>Servlet ComprobarAgenda</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<form action='/AgendaSOAPClienteWeb/GuardarPersona' method='POST'>");
-                out.println("Nombre:<br>");
-                out.println("<input type='text' name='nombre'>");
-                out.println("<br>");
-                out.println("Telefono:<br>");
-                out.println("<input type='text' name='telefono'>");
-                out.println("<br>");
-                out.println("Email:<br>");
-                out.println("<input type='text' name='email'>");
-                out.println("<br>");
-                out.println("<br>");
-                out.println("<input type='submit' value='Crear Persona'>");
-            out.println("</form>");
-            out.println("<hr>");
-            out.println("<form action='/AgendaSOAPClienteWeb/VerPersona' method='POST'>");
-                out.println("Nombre:<br>");
-                out.println("<input type='text' name='nombre'>");
-                out.println("<input type='submit' value='Ver persona'>");
-            out.println("</form>");
-            out.println("<hr>");
-            out.println("<form action='/AgendaSOAPClienteWeb/VerAgenda' method='POST'>");
-                out.println("<input type='submit' value='Ver agenda'>");
-            out.println("</form>");
-            out.println("<hr>");
-            out.println("<form action='/AgendaSOAPClienteWeb/ComprobarAgenda' enctype='multipart/form-data' method='POST'> ");
-                out.println("Agenda:<br>");
-                out.println("<input type='file' name='archivo' accept='.xml'>");
-                out.println("<input type='submit' value='Ver persona'>");
-            out.println("</form>");
-            out.println("<hr>");
+            if(b){
+                out.println("<h1>La agenda es valida</h1>");
+            }else{
+                out.println("<h1>La agenda no es valida</h1>");
+            }           
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
